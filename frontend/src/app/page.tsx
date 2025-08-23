@@ -76,14 +76,11 @@ export default function HomePage() {
 >
   <div className="bg-gray-900/60 backdrop-blur-md rounded-2xl shadow-2xl border border-teal-500/40 p-10 hover:scale-[1.02] transition-transform duration-500">
     <h3 className="text-4xl font-bold mb-6 text-teal-300 tracking-wide">
-      About Zebo
+      About the Event
     </h3>
     <p className="text-gray-300 text-lg md:text-xl leading-relaxed">
-      Zebo is a dynamic platform dedicated to empowering individuals with
-      knowledge in space science and geospatial technologies. Through
-      interactive workshops, insightful talks, and hands-on sessions, Zebo
-      connects enthusiasts, students, and professionals to explore the latest
-      advancements, inspiring curiosity and innovation in the field.
+        Join global experts in space science, satellite technology, and geospatial intelligence for three days of inspiring talks, hands-on workshops, and networking opportunities at the most anticipated space technology event of the year.
+  This year's theme "Beyond Horizons: Mapping the Future" will explore breakthroughs in space exploration, Earth observation, and the integration of AI with geospatial technologies.
     </p>
   </div>
 </section>
