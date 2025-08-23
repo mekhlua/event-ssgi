@@ -24,31 +24,34 @@ export default function HomePage() {
           className="object-cover object-center animate-zoomSlow"
           priority
         />
+        {/* Twinkling overlay */}
         <div className="absolute inset-0 bg-black/50 animate-twinkle" />
       </div>
 
-      {/* Navbar */}
-      <header className="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-4 bg-black/60 backdrop-blur-lg shadow-lg">
-        <h1 className="text-xl md:text-3xl font-extrabold tracking-wide text-teal-300 drop-shadow-lg">
-  Space Science & Geo Institute
-</h1>
+   {/* Navbar */}
+<header className="fixed top-0 w-full z-50 flex justify-between items-center px-6 py-4 bg-black/60 backdrop-blur-lg shadow-lg border-b border-gray-800">
+  {/* Logo / Title */}
+  <h1 className="text-lg md:text-xl font-extrabold tracking-wide text-white">
+    <span className="text-green-400">Space</span> Science & Geo
+  </h1>
 
-        <nav className="hidden md:flex space-x-4">
-          <Link
-            href="#boxes"
-            className="px-4 py-2 border border-transparent hover:border-white rounded transition font-semibold text-sm text-gray-200 hover:text-white"
-          >
-            Explore
-          </Link>
-          <Link
-            href="#register"
-            className="px-4 py-2 bg-green-600 rounded font-semibold text-sm hover:bg-green-700 transition"
-          >
-            Register
-          </Link>
-          
-        </nav>
-      </header>
+  {/* Nav Links */}
+  <nav className="hidden md:flex space-x-4">
+    <a
+      href="#register"
+      className="px-4 py-2 rounded-full bg-gradient-to-r from-green-400 to-blue-500 text-black font-semibold text-sm shadow-md hover:from-green-500 hover:to-blue-600 transition-all duration-300"
+    >
+      Register
+    </a>
+    <a
+      href="#boxes"
+      className="px-4 py-2 rounded-full border border-blue-400 text-blue-300 font-semibold text-sm hover:bg-blue-500 hover:text-white shadow-md transition-all duration-300"
+    >
+      Explore
+    </a>
+  </nav>
+</header>
+
 
       {/* Hero */}
       <section className={`flex flex-col justify-center items-center text-center h-screen px-6 transition-all duration-1000 ${showSections ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
@@ -65,43 +68,56 @@ export default function HomePage() {
           Register Now
         </Link>
       </section>
-        {/* About the Event Section */}
-<section className={`px-6 py-12 max-w-4xl mx-auto text-center bg-black/40 backdrop-blur-md rounded-xl shadow-xl border border-teal-500 transition-all duration-1000 ${showSections ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
-  <h3 className="text-4xl font-bold mb-6 text-teal-300 drop-shadow">About the Event</h3>
-  <p className="text-gray-200 text-lg md:text-xl leading-relaxed">
-    Join global experts in space science, satellite technology, and geospatial intelligence for three days of inspiring talks, hands-on workshops, and networking opportunities at the most anticipated space technology event of the year.
-  </p>
-  <p className="text-gray-200 text-lg md:text-xl leading-relaxed mt-4">
-    This year's theme <span className="font-semibold text-white">"Beyond Horizons: Mapping the Future"</span> will explore breakthroughs in space exploration, Earth observation, and the integration of AI with geospatial technologies.
-  </p>
+     {/* About Section */}
+<section
+  className={`px-6 py-20 max-w-5xl mx-auto transition-all duration-1000 ${
+    showSections ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+  }`}
+>
+  <div className="bg-gray-900/60 backdrop-blur-md rounded-2xl shadow-2xl border border-teal-500/40 p-10 hover:scale-[1.02] transition-transform duration-500">
+    <h3 className="text-4xl font-bold mb-6 text-teal-300 tracking-wide">
+      About Zebo
+    </h3>
+    <p className="text-gray-300 text-lg md:text-xl leading-relaxed">
+      Zebo is a dynamic platform dedicated to empowering individuals with
+      knowledge in space science and geospatial technologies. Through
+      interactive workshops, insightful talks, and hands-on sessions, Zebo
+      connects enthusiasts, students, and professionals to explore the latest
+      advancements, inspiring curiosity and innovation in the field.
+    </p>
+  </div>
 </section>
 
-      {/* Boxes Section */}
-      <section id="boxes" className={`max-w-6xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-3 gap-8 transition-all duration-1000 ${showSections ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
-        {/* Schedule Box */}
-        <Link href="/schedule" className="bg-black/70 backdrop-blur-md rounded-xl p-8 shadow-lg hover:scale-105 transition transform hover:shadow-2xl flex flex-col items-center text-center group">
-          <div className="bg-blue-600 p-5 rounded-full mb-4 text-2xl group-hover:animate-bounce">📅</div>
-          <h3 className="text-2xl font-semibold mb-2">Schedule</h3>
-          <p className="text-gray-300 mb-4">View the full schedule of talks, workshops, and networking events.</p>
-          <span className="px-4 py-2 bg-blue-600 rounded-full text-sm font-semibold hover:bg-blue-700 transition">See More</span>
-        </Link>
 
-        {/* Speakers Box */}
-        <Link href="/speakers" className="bg-black/70 backdrop-blur-md rounded-xl p-8 shadow-lg hover:scale-105 transition transform hover:shadow-2xl flex flex-col items-center text-center group">
-          <div className="bg-purple-600 p-5 rounded-full mb-4 text-2xl group-hover:animate-bounce">🎤</div>
-          <h3 className="text-2xl font-semibold mb-2">Speakers</h3>
-          <p className="text-gray-300 mb-4">Meet our featured experts from NASA, ESA, and SpaceX sharing their insights.</p>
-          <span className="px-4 py-2 bg-purple-600 rounded-full text-sm font-semibold hover:bg-purple-700 transition">See More</span>
-        </Link>
+     {/* Boxes Section */}
+<section id="boxes" className={`max-w-6xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-3 gap-8 transition-all duration-1000 ${showSections ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
+  
+  {/* Schedule Box */}
+  <Link href="/schedule" className="bg-black/70 backdrop-blur-md rounded-xl p-8 shadow-lg hover:scale-105 transition transform hover:shadow-2xl flex flex-col items-center text-center group">
+    <div className="bg-blue-600 p-5 rounded-full mb-4 text-2xl group-hover:animate-bounce">📅</div>
+    <h3 className="text-2xl font-semibold mb-2">Schedule</h3>
+    <p className="text-gray-300 mb-4">View the full schedule of talks, workshops, and networking events.</p>
+    <span className="px-4 py-2 bg-blue-600 rounded-full text-sm font-semibold hover:bg-blue-700 transition">See More</span>
+  </Link>
 
-        {/* Location Box */}
-        <Link href="/location" className="bg-black/70 backdrop-blur-md rounded-xl p-8 shadow-lg hover:scale-105 transition transform hover:shadow-2xl flex flex-col items-center text-center group">
-          <div className="bg-green-600 p-5 rounded-full mb-4 text-2xl group-hover:animate-bounce">📍</div>
-          <h3 className="text-2xl font-semibold mb-2">Location</h3>
-          <p className="text-gray-300 mb-4">Find the venue, accommodation, and how to get there in Addis Ababa.</p>
-          <span className="px-4 py-2 bg-green-600 rounded-full text-sm font-semibold hover:bg-green-700 transition">See More</span>
-        </Link>
-      </section>
+  {/* Speakers Box */}
+  <Link href="/speakers" className="bg-black/70 backdrop-blur-md rounded-xl p-8 shadow-lg hover:scale-105 transition transform hover:shadow-2xl flex flex-col items-center text-center group">
+    <div className="bg-purple-600 p-5 rounded-full mb-4 text-2xl group-hover:animate-bounce">🎤</div>
+    <h3 className="text-2xl font-semibold mb-2">Speakers</h3>
+    <p className="text-gray-300 mb-4">Meet our featured experts from NASA, ESA, and SpaceX sharing their insights.</p>
+    <span className="px-4 py-2 bg-purple-600 rounded-full text-sm font-semibold hover:bg-purple-700 transition">See More</span>
+  </Link>
+
+  {/* Location Box */}
+  <Link href="/location" className="bg-black/70 backdrop-blur-md rounded-xl p-8 shadow-lg hover:scale-105 transition transform hover:shadow-2xl flex flex-col items-center text-center group">
+    <div className="bg-green-600 p-5 rounded-full mb-4 text-2xl group-hover:animate-bounce">📍</div>
+    <h3 className="text-2xl font-semibold mb-2">Location</h3>
+    <p className="text-gray-300 mb-4">Find the venue, accommodation, and how to get there in Addis Ababa.</p>
+    <span className="px-4 py-2 bg-green-600 rounded-full text-sm font-semibold hover:bg-green-700 transition">See More</span>
+  </Link>
+
+</section>
+
 
       {/* Call to Action Section */}
       <section id="register" className={`px-6 py-20 max-w-4xl mx-auto text-center bg-black/60 backdrop-blur-sm rounded-xl shadow-lg transition-all duration-1000 ${showSections ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
@@ -167,6 +183,7 @@ export default function HomePage() {
           animation: twinkle 3s infinite alternate;
         }
       `}</style>
+
     </main>
   );
 }
