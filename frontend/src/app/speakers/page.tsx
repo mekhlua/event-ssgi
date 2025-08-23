@@ -8,6 +8,9 @@ type Speaker = {
   name: string;
   bio: string;
   photo: string;
+  twitter: string | null;
+  linkedin: string | null;
+  github: string | null;
 };
 
 export default function SpeakersPage() {
@@ -15,21 +18,26 @@ export default function SpeakersPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
- useEffect(() => {
-  // Use environment variable instead of hardcoded localhost
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://event-ssgi-4.onrender.com';
-  
-  fetch(`${API_URL}/api/speakers/`)
-    .then((res) => res.json())
-    .then((data) => {
-      setSpeakers(data);
-      setLoading(false);
-    })
-    .catch((error) => {
-      console.error('Error fetching speakers:', error);
-      setLoading(false);
-    });
-}, []);
+  useEffect(() => {
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://event-ssgi-4.onrender.com';
+    
+    fetch(`${API_URL}/api/speakers/`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`Failed to fetch speakers: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setSpeakers(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching speakers:', error);
+        setError('Failed to load speakers. Please try again later.');
+        setLoading(false);
+      });
+  }, []);
 
   if (loading)
     return <p className="text-white text-center mt-20">Loading speakers...</p>;
@@ -66,25 +74,55 @@ export default function SpeakersPage() {
             key={speaker.id}
             className="bg-black/70 backdrop-blur-md border border-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-2xl hover:scale-105 transition transform text-center"
           >
-        
-  {speaker.photo && (
-    <div className="w-32 h-32 mx-auto mb-4">
-      <Image
-        src={speaker.photo}
-        alt={speaker.name}
-        width={128}
-        height={128}
-        className="object-cover rounded-full border-2 border-teal-400"
-      />
-    </div>
-)}
+            {speaker.photo && (
+              <div className="w-32 h-32 mx-auto mb-4 relative">
+                <Image
+                  src={speaker.photo}
+                  alt={speaker.name}
+                  fill
+                  className="object-cover rounded-full border-2 border-teal-400"
+                  onError={(e) => {
+                    // Fallback if image fails to load
+                    e.currentTarget.src = '/placeholder-speaker.jpg';
+                  }}
+                />
+              </div>
+            )}
+            
             <h2 className="text-xl font-semibold mb-2">{speaker.name}</h2>
-            <p className="text-gray-300 mb-4">{speaker.bio}</p>
+            <p className="text-gray-300 mb-4 whitespace-pre-line">{speaker.bio}</p>
 
             <div className="flex justify-center gap-4 mt-2 text-gray-400 text-xl">
-              <a href="#" className="hover:text-blue-400 transition"><FaTwitter /></a>
-              <a href="#" className="hover:text-blue-600 transition"><FaLinkedin /></a>
-              <a href="#" className="hover:text-gray-200 transition"><FaGithub /></a>
+              {speaker.twitter && (
+                <a 
+                  href={speaker.twitter} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-blue-400 transition"
+                >
+                  <FaTwitter />
+                </a>
+              )}
+              {speaker.linkedin && (
+                <a 
+                  href={speaker.linkedin} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-blue-600 transition"
+                >
+                  <FaLinkedin />
+                </a>
+              )}
+              {speaker.github && (
+                <a 
+                  href={speaker.github} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-gray-200 transition"
+                >
+                  <FaGithub />
+                </a>
+              )}
             </div>
           </div>
         ))}
