@@ -185,7 +185,7 @@ export default function HomePage() {
           animation: twinkle 3s infinite alternate;
         }
       `}</style>
-
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
     </main>
   );
 }
