@@ -76,7 +76,7 @@ export default function HomePage() {
 >
   <div className="bg-gray-900/60 backdrop-blur-md rounded-2xl shadow-2xl border border-teal-500/40 p-10 hover:scale-[1.02] transition-transform duration-500">
     <h3 className="text-4xl font-bold mb-6 text-teal-300 tracking-wide">
-      About Zebo
+      About The Event
     </h3>
     <p className="text-gray-300 text-lg md:text-xl leading-relaxed">
       Join global experts in space science, satellite technology, and geospatial intelligence for three days of inspiring talks, hands-on workshops, and networking opportunities at the most anticipated space technology event of the year.
