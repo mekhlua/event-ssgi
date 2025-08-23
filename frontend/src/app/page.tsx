@@ -83,7 +83,7 @@ export default function HomePage() {
      satellite technology, and geospatial 
      intelligence for three days of inspiring talks, hands-on workshops, 
      and networking opportunities at the most anticipated space technology event of the year.
-     This year's theme "Beyond Horizons: Mapping the Future" 
+     This years theme Beyond Horizons: Mapping the Future 
      will explore breakthroughs in space exploration, 
      Earth observation, and the integration of AI with geospatial technologies.
     </p>

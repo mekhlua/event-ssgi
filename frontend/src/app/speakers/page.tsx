@@ -63,13 +63,18 @@ export default function SpeakersPage() {
             key={speaker.id}
             className="bg-black/70 backdrop-blur-md border border-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-2xl hover:scale-105 transition transform text-center"
           >
-            {speaker.photo && (
-              <img
-                src={speaker.photo}
-                alt={speaker.name}
-                className="w-32 h-32 object-cover rounded-full mx-auto mb-4 border-2 border-teal-400"
-              />
-            )}
+        
+  {speaker.photo && (
+    <div className="w-32 h-32 mx-auto mb-4">
+      <Image
+        src={speaker.photo}
+        alt={speaker.name}
+        width={128}
+        height={128}
+        className="object-cover rounded-full border-2 border-teal-400"
+      />
+    </div>
+)}
             <h2 className="text-xl font-semibold mb-2">{speaker.name}</h2>
             <p className="text-gray-300 mb-4">{speaker.bio}</p>
 
