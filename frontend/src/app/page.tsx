@@ -79,11 +79,8 @@ export default function HomePage() {
       About Zebo
     </h3>
     <p className="text-gray-300 text-lg md:text-xl leading-relaxed">
-      Zebo is a dynamic platform dedicated to empowering individuals with
-      knowledge in space science and geospatial technologies. Through
-      interactive workshops, insightful talks, and hands-on sessions, Zebo
-      connects enthusiasts, students, and professionals to explore the latest
-      advancements, inspiring curiosity and innovation in the field.
+      Join global experts in space science, satellite technology, and geospatial intelligence for three days of inspiring talks, hands-on workshops, and networking opportunities at the most anticipated space technology event of the year.
+This year's theme "Beyond Horizons: Mapping the Future" will explore breakthroughs in space exploration, Earth observation, and the integration of AI with geospatial technologies.
     </p>
   </div>
 </section>
