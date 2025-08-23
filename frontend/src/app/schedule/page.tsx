@@ -19,28 +19,30 @@ const SchedulePage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/schedule/')
-      .then((res) => {
-        if (!res.ok) throw new Error('Fetch failed');
-        return res.json();
-      })
-      .then((data: Session[]) => {
-        const grouped: ScheduleData = {};
-        data.forEach((item: Session) => {
-          const dayLabel = item.day || 'General';
-          if (!grouped[dayLabel]) grouped[dayLabel] = [];
-          grouped[dayLabel].push(item);
-        });
-        setSchedule(grouped);
-        setLoading(false);
-      })
-      .catch(() => {
-        setError(true);
-        setLoading(false);
+useEffect(() => {
+  // Use environment variable instead of hardcoded localhost
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://event-ssgi-4.onrender.com';
+  
+  fetch(`${API_URL}/api/schedule/`)
+    .then((res) => {
+      if (!res.ok) throw new Error('Fetch failed');
+      return res.json();
+    })
+    .then((data: Session[]) => {
+      const grouped: ScheduleData = {};
+      data.forEach((item: Session) => {
+        const dayLabel = item.day || 'General';
+        if (!grouped[dayLabel]) grouped[dayLabel] = [];
+        grouped[dayLabel].push(item);
       });
-  }, []);
-
+      setSchedule(grouped);
+      setLoading(false);
+    })
+    .catch(() => {
+      setError(true);
+      setLoading(false);
+    });
+}, []);
   const formatTime = (iso: string) => {
     const date = new Date(iso);
     return date.toLocaleString('en-US', {

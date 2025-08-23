@@ -15,18 +15,21 @@ export default function SpeakersPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/speakers/')
-      .then((res) => res.json())
-      .then((data) => {
-        setSpeakers(data);
-        setLoading(false);
-      })
-      .catch(() => {
-        setError('Failed to load speakers');
-        setLoading(false);
-      });
-  }, []);
+ useEffect(() => {
+  // Use environment variable instead of hardcoded localhost
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://event-ssgi-4.onrender.com';
+  
+  fetch(`${API_URL}/api/speakers/`)
+    .then((res) => res.json())
+    .then((data) => {
+      setSpeakers(data);
+      setLoading(false);
+    })
+    .catch((error) => {
+      console.error('Error fetching speakers:', error);
+      setLoading(false);
+    });
+}, []);
 
   if (loading)
     return <p className="text-white text-center mt-20">Loading speakers...</p>;
