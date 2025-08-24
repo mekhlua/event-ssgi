@@ -12,36 +12,64 @@ export default function Register() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setError('');
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  setError('');
 
+  try {
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://event-ssgi-4.onrender.com';
+    
+    const registrationData = {
+      username: formData.username,
+      email: formData.email,
+      password: formData.password,
+      first_name: "",
+      last_name: "", 
+      is_staff: false,
+      is_active: true,
+      is_superuser: false,
+      last_login: null,
+      date_joined: new Date().toISOString(), // Use current date instead of null
+      groups: [],
+      user_permissions: []
+    };
+
+    console.log('Sending data:', registrationData);
+
+    const res = await fetch(`${API_URL}/api/register/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(registrationData),
+    });
+
+    console.log('Response status:', res.status);
+    console.log('Response headers:', Object.fromEntries(res.headers.entries()));
+    
+    const text = await res.text(); // Get raw text first
+    console.log('Raw response:', text);
+    
+    let data;
     try {
-      const res = await fetch('http://localhost:8000/api/register/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        console.log('User registered successfully');
-        router.push('/schedule'); // Redirect after success
-      } else {
-        // Show specific field errors if available
-        const fieldError =
-          data.username?.[0] || data.email?.[0] || data.password?.[0] || data.detail || 'Registration failed';
-        setError(fieldError);
-      }
-    } catch (err) {
-      console.error('Error submitting form:', err);
-      setError('Something went wrong. Please try again.');
+      data = text ? JSON.parse(text) : {};
+    } catch (parseError) {
+      console.error('JSON parse error:', parseError, 'Raw text:', text);
+      data = {};
     }
-  };
 
+    if (res.ok) {
+      console.log('User registered successfully');
+      router.push('/schedule');
+    } else {
+      console.error('Server errors:', data);
+      setError(data.detail || data.message || 'Registration failed. Please check your input.');
+    }
+  } catch (err) {
+    console.error('Network error:', err);
+    setError('Network error. Please try again.');
+  }
+};
   return (
     <main className="relative min-h-screen flex items-center justify-center text-white overflow-x-hidden">
       {/* Starry Background */}

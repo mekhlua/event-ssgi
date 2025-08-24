@@ -1,4 +1,3 @@
-// app/page.tsx
 "use client";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,7 +17,7 @@ export default function HomePage() {
       {/* Animated Star Background */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <Image
-          src="/bg-stars.jpg"
+          src="https://img.freepik.com/premium-photo/abstract-space-scene-with-glowing-celestial-bodies_1060272-1807.jpg"
           alt="Starry background"
           fill
           className="object-cover object-center animate-zoomSlow"
@@ -61,12 +60,7 @@ export default function HomePage() {
         <p className="text-lg md:text-xl mb-8 opacity-90 drop-shadow">
           August 20–22 • Addis Ababa International Convention Centre
         </p>
-        <Link
-          href="#register"
-          className="px-8 py-3 bg-green-600 rounded-full font-semibold hover:bg-green-700 transition shadow-lg"
-        >
-          Register Now
-        </Link>
+        
       </section>
      {/* About Section */}
 <section
@@ -107,7 +101,7 @@ export default function HomePage() {
     <div className="bg-purple-600 p-5 rounded-full mb-4 text-2xl group-hover:animate-bounce">🎤</div>
     <h3 className="text-2xl font-semibold mb-2">Speakers</h3>
     <p className="text-gray-300 mb-4">Meet our featured experts from NASA, ESA, and SpaceX sharing their insights.</p>
-    <span className="px-4 py-2 bg-purple-600 rounded-full text-sm font-semibold hover:bg-purple-700 transition">See More</span>
+    <span className="px-4 py-2 bg-purple-600 rounded-full text-sm font-semibold hover:purple-700 transition">See More</span>
   </Link>
 
   {/* Location Box */}
@@ -185,7 +179,6 @@ export default function HomePage() {
           animation: twinkle 3s infinite alternate;
         }
       `}</style>
-    const API_URL = process.env.NEXT_PUBLIC_API_URL;
     </main>
   );
 }
