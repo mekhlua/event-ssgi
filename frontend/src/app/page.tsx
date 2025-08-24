@@ -44,12 +44,6 @@ export default function HomePage() {
         {/* Nav Links - Desktop */}
         <nav className="hidden md:flex space-x-3 lg:space-x-4">
           <a
-            href="#register"
-            className="px-3 py-1.5 lg:px-4 lg:py-2 rounded-full bg-gradient-to-r from-green-400 to-blue-500 text-black font-semibold text-xs lg:text-sm shadow-md hover:from-green-500 hover:to-blue-600 transition-all duration-300"
-          >
-            Register
-          </a>
-          <a
             href="#boxes"
             className="px-3 py-1.5 lg:px-4 lg:py-2 rounded-full border border-blue-400 text-blue-300 font-semibold text-xs lg:text-sm hover:bg-blue-500 hover:text-white shadow-md transition-all duration-300"
           >
@@ -67,7 +61,7 @@ export default function HomePage() {
           August 20–22 • Addis Ababa International Convention Centre
         </p>
         <Link
-          href="#register"
+          href="/register"
           className="px-6 py-2.5 sm:px-8 sm:py-3 bg-green-600 rounded-full font-semibold hover:bg-green-700 transition shadow-lg text-sm sm:text-base"
         >
           Register Now
