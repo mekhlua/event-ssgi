@@ -66,12 +66,13 @@ useEffect(() => {
       {/* Starry Background */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <Image
-          src="/bg-stars.jpg"
+          src="https://img.freepik.com/premium-photo/abstract-space-scene-with-glowing-celestial-bodies_1060272-1807.jpg"
           alt="Starry background"
           fill
           className="object-cover object-center animate-zoomSlow"
-          priority
-        />
+  priority
+  sizes="100vw"
+/>
         <div className="absolute inset-0 bg-black/50 animate-twinkle" />
       </div>
 

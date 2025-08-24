@@ -40,10 +40,39 @@ export default function SpeakersPage() {
   }, []);
 
   if (loading)
-    return <p className="text-white text-center mt-20">Loading speakers...</p>;
+    return (
+      <div className="relative min-h-screen flex items-center justify-center text-white">
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <Image
+            src="https://img.freepik.com/premium-photo/abstract-space-scene-with-glowing-celestial-bodies_1060272-1807.jpg"
+            alt="Starry background"
+            fill
+            className="object-cover object-center animate-zoomSlow"
+            priority
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-black/50 animate-twinkle" />
+        </div>
+        <p className="text-center text-white text-lg">Loading speakers...</p>
+      </div>
+    );
+    
   if (error)
     return (
-      <p className="text-red-500 text-center mt-20">{error}</p>
+      <div className="relative min-h-screen flex items-center justify-center text-white">
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <Image
+            src="https://img.freepik.com/premium-photo/abstract-space-scene-with-glowing-celestial-bodies_1060272-1807.jpg"
+            alt="Starry background"
+            fill
+            className="object-cover object-center animate-zoomSlow"
+            priority
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-black/50 animate-twinkle" />
+        </div>
+        <p className="text-red-400 text-center text-lg px-4">{error}</p>
+      </div>
     );
 
   return (
@@ -51,54 +80,58 @@ export default function SpeakersPage() {
       {/* Starry Background */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <Image
-          src="/bg-stars.jpg"
+          src="https://img.freepik.com/premium-photo/abstract-space-scene-with-glowing-celestial-bodies_1060272-1807.jpg"
           alt="Starry background"
           fill
           className="object-cover object-center animate-zoomSlow"
           priority
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-black/50 animate-twinkle" />
       </div>
 
       {/* Page Title */}
-      <header className="text-center py-16">
-        <h1 className="text-4xl md:text-5xl font-extrabold drop-shadow-lg">
+      <header className="text-center py-12 px-4 sm:py-16">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold drop-shadow-lg">
           Meet the Speakers
         </h1>
       </header>
 
       {/* Speakers Grid */}
-      <div className="max-w-6xl mx-auto px-6 pb-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-12 md:pb-16 grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {speakers.map((speaker) => (
           <div
             key={speaker.id}
-            className="bg-black/70 backdrop-blur-md border border-gray-700 rounded-2xl p-6 shadow-lg hover:shadow-2xl hover:scale-105 transition transform text-center"
+            className="bg-black/70 backdrop-blur-md border border-gray-700 rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-2xl md:hover:scale-105 transition-transform duration-300 text-center"
           >
             {speaker.photo && (
-              <div className="w-32 h-32 mx-auto mb-4 relative">
+              <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 mx-auto mb-3 sm:mb-4 relative">
                 <Image
                   src={speaker.photo}
                   alt={speaker.name}
                   fill
                   className="object-cover rounded-full border-2 border-teal-400"
                   onError={(e) => {
-                    // Fallback if image fails to load
                     e.currentTarget.src = '/placeholder-speaker.jpg';
                   }}
+                  sizes="(max-width: 640px) 96px, (max-width: 768px) 112px, 128px"
                 />
               </div>
             )}
             
-            <h2 className="text-xl font-semibold mb-2">{speaker.name}</h2>
-            <p className="text-gray-300 mb-4 whitespace-pre-line">{speaker.bio}</p>
+            <h2 className="text-lg sm:text-xl font-semibold mb-2">{speaker.name}</h2>
+            <p className="text-gray-300 text-sm sm:text-base mb-3 sm:mb-4 whitespace-pre-line leading-relaxed">
+              {speaker.bio}
+            </p>
 
-            <div className="flex justify-center gap-4 mt-2 text-gray-400 text-xl">
+            <div className="flex justify-center gap-3 sm:gap-4 mt-2 text-gray-400 text-lg sm:text-xl">
               {speaker.twitter && (
                 <a 
                   href={speaker.twitter} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="hover:text-blue-400 transition"
+                  className="hover:text-blue-400 transition-colors duration-200 p-1"
+                  aria-label={`${speaker.name} Twitter`}
                 >
                   <FaTwitter />
                 </a>
@@ -108,7 +141,8 @@ export default function SpeakersPage() {
                   href={speaker.linkedin} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="hover:text-blue-600 transition"
+                  className="hover:text-blue-600 transition-colors duration-200 p-1"
+                  aria-label={`${speaker.name} LinkedIn`}
                 >
                   <FaLinkedin />
                 </a>
@@ -118,7 +152,8 @@ export default function SpeakersPage() {
                   href={speaker.github} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="hover:text-gray-200 transition"
+                  className="hover:text-gray-200 transition-colors duration-200 p-1"
+                  aria-label={`${speaker.name} GitHub`}
                 >
                   <FaGithub />
                 </a>
@@ -127,6 +162,13 @@ export default function SpeakersPage() {
           </div>
         ))}
       </div>
+
+      {/* Empty state */}
+      {speakers.length === 0 && !loading && (
+        <div className="text-center py-16 px-4">
+          <p className="text-gray-400 text-lg">No speakers available yet. Check back later!</p>
+        </div>
+      )}
 
       {/* Tailwind Animations */}
       <style jsx global>{`
